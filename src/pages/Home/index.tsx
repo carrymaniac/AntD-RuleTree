@@ -1,18 +1,20 @@
-import Guide from '@/components/Guide';
-import RuleTree from '@/components/RuleTree/RuleTree';
-import { trim } from '@/utils/format';
+import ActionFormItemPool from '@/components/ActionFormItemPool';
+import ActionFormView from '@/components/ActionFormView';
 import { PageContainer } from '@ant-design/pro-components';
-import { useModel } from '@umijs/max';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './index.less';
 
 const HomePage: React.FC = () => {
-  const { name } = useModel('global');
   return (
+    <DndProvider backend={HTML5Backend}>
     <PageContainer ghost>
       <div className={styles.container}>
-        <RuleTree displayName={'Ant Design'}></RuleTree>
+        <ActionFormItemPool></ActionFormItemPool>
+        <ActionFormView></ActionFormView>
       </div>
     </PageContainer>
+    </DndProvider>
   );
 };
 

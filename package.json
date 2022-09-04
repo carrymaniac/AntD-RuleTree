@@ -9,10 +9,14 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "@aligov/gov-rule-tree": "0.0.12",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^1.1.3",
     "@umijs/max": "^4.0.5",
-    "antd": "^4.20.7"
+    "antd": "^4.20.7",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-flow-renderer": "^10.3.14"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
