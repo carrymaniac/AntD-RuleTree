@@ -1,29 +1,16 @@
-import { Form, Input, Select } from 'antd';
 import React, { ReactElement, useState } from 'react';
 import { useDrop } from 'react-dnd';
+import {getActionFormItem} from '@/utils/actionForm'
+import ActionFormViewRow from '../ActionFormViewRow';
 
 
 
-
-const getActionFormItem = (ItemData:Record<string,any>):ReactElement => {
-  console.log(ItemData);
-   const {type, name, label, componentProps} = ItemData;
-   switch (type) {
-    case "Input":
-      return  <Form.Item label={label} name={name}>
-          <Input></Input>
-        </Form.Item>
-    case "Select":
-      return <Form.Item label={label} name={name}>
-        <Select {...componentProps}>
-
-        </Select>
-      </Form.Item>
-    default:
-      return <></>
-   }
-}
 const testItem = <div>23333</div>
+
+const generateNewActionFormRow = (item: ReactElement) => {
+  return <ActionFormViewRow initItem={item}/>
+}
+
 const ActionFormView: React.FC = () => {
   const [renderItem, setRenderItem] = useState<ReactElement[]>([testItem]);
 
@@ -36,7 +23,10 @@ const ActionFormView: React.FC = () => {
       canDrop: monitor.canDrop(),
     }),
     drop: (item, monitor) => {
-      const newItem = getActionFormItem(item as Record<string,string>);
+      if(monitor.didDrop()){
+        return;
+      }
+      const newItem = generateNewActionFormRow(getActionFormItem(item as Record<string,object>));
       setRenderItem(pre => [...pre, newItem]);
     },
   }));
